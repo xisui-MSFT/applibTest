@@ -1,0 +1,69 @@
+{
+  "version": 2,
+  "configurePresets": [
+    {
+      "name": "ARM-Debug",
+      "displayName": "ARM-Debug",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/out/${presetName}",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/install/${presetName}",
+        "CMAKE_TOOLCHAIN_FILE": "$env{AzureSphereDefaultSDKDir}/CMakeFiles/AzureSphereToolchain.cmake",
+        "AZURE_SPHERE_TARGET_API_SET": "latest-lts"
+      }
+    },
+    {
+      "name": "ARM-Release",
+      "displayName": "ARM-Release",
+      "inherits": "ARM-Debug",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+    {
+      "name": "x86-Debug",
+      "displayName": "x86-Debug",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/out/${presetName}",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/install/${presetName}",
+        "CMAKE_TOOLCHAIN_FILE": "$env{AzureSphereDefaultSDKDir}/NativeLibs/AzureSphereNativeToolchain.cmake",
+        "AZURE_SPHERE_TARGET_API_SET": "latest-lts"
+      }
+    },
+    {
+      "name": "x86-Release",
+      "displayName": "x86-Release",
+      "inherits": "x86-Debug",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+        "name": "ARM-Debug",
+        "displayName": "ARM-Debug",
+        "configurePreset": "ARM-Debug"
+    },
+    {
+        "name": "x86-Debug",
+        "displayName": "x86-Debug",
+        "configurePreset": "x86-Debug"
+    }
+  ],
+  "testPresets": [
+    {
+        "name": "ARM-Debug",
+        "displayName": "ARM-Debug",
+        "configurePreset": "ARM-Debug"
+    },
+    {
+        "name": "x86-Debug",
+        "displayName": "x86-Debug",
+        "configurePreset": "x86-Debug"
+    }
+  ]
+}
